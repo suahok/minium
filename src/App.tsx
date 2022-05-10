@@ -1,5 +1,3 @@
-import React from "react"
-
 export default function App() {
-  return <div>App</div>
+  return <div>This is a page boot</div>
 }
