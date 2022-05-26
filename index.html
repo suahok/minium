@@ -17,9 +17,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(41, 128, 185, 0.8);
+        background-color: rgb(41, 128, 185);
         z-index: 999;
-        opacity: 1;
       }
 
       .spinner-visible {
@@ -100,31 +99,16 @@
         <div class="rect5"></div>
       </div>
     </div>
-    <!-- <div id="root"></div> -->
-    <!-- <script type="module" src="/src/main.tsx"></script> -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
     <script>
       void (function () {
-        window.addEventListener("DOMContentLoaded", function () {
-          const fragment = document.createDocumentFragment()
-          const root = document.createElement("div")
-          root.setAttribute("id", "root")
-          const script = document.createElement("script")
-          script.setAttribute("type", "module")
-          script.setAttribute("src", "/src/main.tsx")
-
-          fragment.appendChild(root)
-          fragment.appendChild(script)
-
-          document.body.appendChild(fragment)
-        })
-
         document.body.onload = function () {
           const load = document.querySelector(".spinner-box")
           load.classList.add("spinner-visible")
+          console.log("onload")
 
-          setTimeout(() => {
-            load.remove()
-          }, 1500)
+          setTimeout(() => void load.remove(), 1000)
         }
       })()
     </script>
