@@ -21,7 +21,7 @@
         z-index: 999;
       }
 
-      .spinner-visible {
+      .spinner-box-visible {
         opacity: 0;
         transition: opacity ease 1s;
       }
@@ -32,6 +32,11 @@
         height: 40px;
         text-align: center;
         font-size: 10px;
+      }
+
+      .spinner-visible {
+        opacity: 0;
+        transition: opacity ease 300ms;
       }
 
       .spinner > div {
@@ -104,11 +109,12 @@
     <script>
       void (function () {
         document.body.onload = function () {
-          const load = document.querySelector(".spinner-box")
-          load.classList.add("spinner-visible")
-          console.log("onload")
+          const spinnerBox = document.querySelector(".spinner-box")
+          const spinner = document.querySelector(".spinner")
+          spinner.classList.add("spinner-visible")
+          spinnerBox.classList.add("spinner-box-visible")
 
-          setTimeout(() => void load.remove(), 1000)
+          setTimeout(() => void spinnerBox.remove(), 1000)
         }
       })()
     </script>
