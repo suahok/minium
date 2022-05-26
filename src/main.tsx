@@ -1,11 +1,18 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import { Provider } from "react-redux"
+
+import { store } from "./stores"
 import App from "./App"
 
 import "dayjs/locale/zh-cn"
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const root = createRoot(document.getElementById("root")!)
+
+root.render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>
 )

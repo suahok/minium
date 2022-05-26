@@ -1,8 +1,14 @@
 import { defineConfig } from "vite"
 import viteReact from "@vitejs/plugin-react"
+import * as path from "path"
 
 export default defineConfig({
   plugins: [viteReact()],
+  resolve: {
+    alias: {
+      "@": path.resolve(process.cwd(), "src")
+    }
+  },
   build: {
     chunkSizeWarningLimit: 2048,
     rollupOptions: {
