@@ -13,9 +13,19 @@ export default defineConfig({
     chunkSizeWarningLimit: 2048,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (/(node_modules)/g.exec(id)) {
-            return id.toString().split("node_modules/")[1].split("/")[0].toString()
+        manualChunks(chunkAlias) {
+          if (/(node_modules)/g.exec(chunkAlias)) {
+            return chunkAlias.toString().split("node_modules/")[1].split("/")[0].toString()
+          }
+        },
+        entryFileNames: "scripts/[name].[hash].js",
+        chunkFileNames: "scripts/[name].[hash].js",
+        assetFileNames({ name }) {
+          const extname = name?.toString().split(".")[1]
+          if (extname === "css") {
+            return "styles/[name].[hash].[ext]"
+          } else {
+            return "[ext]/[name].[hash].[ext]"
           }
         }
       }
