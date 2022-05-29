@@ -1,23 +1,18 @@
-import { defineConfig } from "vite"
+import { resolve } from "path"
+import { defineConfig, splitVendorChunkPlugin } from "vite"
 import viteReact from "@vitejs/plugin-react"
-import * as path from "path"
 
 export default defineConfig({
-  plugins: [viteReact()],
+  plugins: [viteReact(), splitVendorChunkPlugin()],
   resolve: {
     alias: {
-      "@": path.resolve(process.cwd(), "src")
+      "@": resolve(__dirname, "src")
     }
   },
   build: {
     chunkSizeWarningLimit: 2048,
     rollupOptions: {
       output: {
-        manualChunks(chunkAlias) {
-          if (/(node_modules)/g.exec(chunkAlias)) {
-            return chunkAlias.toString().split("node_modules/")[1].split("/")[0].toString()
-          }
-        },
         entryFileNames: "scripts/[name].[hash].js",
         chunkFileNames: "scripts/[name].[hash].js",
         assetFileNames({ name }) {

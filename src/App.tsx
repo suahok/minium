@@ -1,9 +1,9 @@
 import { Button, Container, Group, Loader, MantineProvider } from "@mantine/core"
-import { Home2 } from "tabler-icons-react"
+import { Box, ChakraProvider, Icon } from "@chakra-ui/react"
 import { Suspense } from "react"
 import { BrowserRouter, Link } from "react-router-dom"
+import { FaHome } from "react-icons/fa"
 import { GetRoutes } from "./router"
-import { Box, ChakraProvider } from "@chakra-ui/react"
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       <MantineProvider>
         <Container>
           <Group spacing="xs">
-            <Button variant="subtle" color="teal" leftIcon={<Home2 size={16} />} component={Link} to="/">
+            <Button variant="subtle" color="teal" leftIcon={<Icon as={FaHome} />} component={Link} to="/">
               Home
             </Button>
             <Button variant="subtle" color="indigo" component={Link} to="/history">
