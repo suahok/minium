@@ -13,6 +13,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 2048,
     rollupOptions: {
       output: {
+        // manualChunks(chunkId) {
+        //   if (chunkId.includes("node_modules")) {
+        //     return chunkId.split("node_modules/")[1].split("/")[0].toString()
+        //   }
+        // },
         entryFileNames: "scripts/[name].[hash].js",
         chunkFileNames: "scripts/[name].[hash].js",
         assetFileNames({ name }) {
