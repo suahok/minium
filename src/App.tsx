@@ -1,32 +1,40 @@
-import { Button, Container, Group, Loader, MantineProvider } from "@mantine/core"
-import { Box, ChakraProvider, Icon } from "@chakra-ui/react"
+import { Container, Group, Loader, MantineProvider } from "@mantine/core"
+import { Box, ChakraProvider, Link } from "@chakra-ui/react"
 import { Suspense } from "react"
-import { BrowserRouter, Link } from "react-router-dom"
-import { FaHome } from "react-icons/fa"
+import { Link as ReactLink, useNavigate } from "react-router-dom"
 import { GetRoutes } from "./router"
 
 export default function App() {
+  const navigtor = useNavigate()
+
+  window.addEventListener("storage", evt => {
+    if (!evt.key || evt.key === "isLoggedIn") {
+      navigtor(0)
+    }
+  })
+
   return (
-    <BrowserRouter>
-      <MantineProvider>
-        <Container>
-          <Group spacing="xs">
-            <Button variant="subtle" color="teal" leftIcon={<Icon as={FaHome} />} component={Link} to="/">
+    <MantineProvider>
+      <ChakraProvider>
+        <Container py={18}>
+          <Group>
+            <Link as={ReactLink} color="cyan.600" to="/">
               Home
-            </Button>
-            <Button variant="subtle" color="indigo" component={Link} to="/history">
-              History
-            </Button>
+            </Link>
+            <Link as={ReactLink} color="cyan.600" to="/about">
+              About
+            </Link>
+            <Link as={ReactLink} color="cyan.600" to="/main">
+              Mian
+            </Link>
           </Group>
-          <ChakraProvider>
-            <Box mt={5}>
-              <Suspense fallback={<Loader />}>
-                <GetRoutes />
-              </Suspense>
-            </Box>
-          </ChakraProvider>
+          <Box mt={5}>
+            <Suspense fallback={<Loader />}>
+              <GetRoutes />
+            </Suspense>
+          </Box>
         </Container>
-      </MantineProvider>
-    </BrowserRouter>
+      </ChakraProvider>
+    </MantineProvider>
   )
 }

@@ -1,21 +1,27 @@
-import { Text, ThemeIcon } from "@mantine/core"
-import { Fragment } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { TiHeartFullOutline } from "react-icons/ti"
-import { type Dispatch } from "@/stores"
-import { increment } from "@/stores/counter"
+import { Button, Group, Text } from "@mantine/core"
+import { useSelector } from "react-redux"
+import { useDispatch } from "@/stores"
+import { increment, incrementAsyncCount } from "@/stores/counter"
 import { counterSelector } from "@/stores/selectors"
+import { useCallback } from "react"
 
 export default function App() {
-  const counter = useSelector(counterSelector)
-  const dispatch = useDispatch<Dispatch>()
+  const { value: count } = useSelector(counterSelector)
+  const dispatch = useDispatch()
+
+  const add = useCallback(() => {
+    dispatch(increment())
+  }, [count])
+
+  const addAsync = useCallback(() => {
+    dispatch(incrementAsyncCount())
+  }, [count])
 
   return (
-    <Fragment>
-      <ThemeIcon size="lg" onClick={() => void dispatch(increment())}>
-        <TiHeartFullOutline size={24} />
-      </ThemeIcon>
-      <Text>Count: {counter}</Text>
-    </Fragment>
+    <Group>
+      <Button onClick={add}>Increment</Button>
+      <Button onClick={addAsync}>IncrementAsync</Button>
+      <Text>Count: {count}</Text>
+    </Group>
   )
 }
