@@ -13,7 +13,9 @@ export default function MainBook() {
   return (
     <Group direction="column">
       <Text>Main Book</Text>
-      <Button onClick={onLogout}>Logout</Button>
+      <Button color="orange" onClick={onLogout}>
+        Logout
+      </Button>
 
       <Outlet />
     </Group>

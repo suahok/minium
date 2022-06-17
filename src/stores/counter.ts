@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-type State = { value: number }
+type State = { value: number; loading: boolean }
 
-const initialState: State = { value: 0 }
+const initialState: State = { value: 0, loading: false }
 
 export const incrementAsyncCount = createAsyncThunk("IncrementAsyncCount", async () => {
   return await new Promise<number>((resolve, reject) => {
@@ -23,13 +23,11 @@ const counterSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(incrementAsyncCount.pending, (state, action) => {
-        console.log("Loading...")
-        console.log(action)
+        state.loading = true
       })
       .addCase(incrementAsyncCount.fulfilled, (state, action) => {
         state.value += action.payload
-        console.log("Done!")
-        console.log(action)
+        state.loading = false
       })
   }
 })

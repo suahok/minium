@@ -8,7 +8,7 @@ export default function App() {
   const navigtor = useNavigate()
 
   window.addEventListener("storage", evt => {
-    if (!evt.key || evt.key === "isLoggedIn") {
+    if (!evt.key || evt.key === "isLogined") {
       navigtor(0)
     }
   })

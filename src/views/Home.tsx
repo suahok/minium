@@ -6,7 +6,7 @@ import { counterSelector } from "@/stores/selectors"
 import { useCallback } from "react"
 
 export default function App() {
-  const { value: count } = useSelector(counterSelector)
+  const { value: count, loading } = useSelector(counterSelector)
   const dispatch = useDispatch()
 
   const add = useCallback(() => {
@@ -20,7 +20,9 @@ export default function App() {
   return (
     <Group>
       <Button onClick={add}>Increment</Button>
-      <Button onClick={addAsync}>IncrementAsync</Button>
+      <Button loading={loading} onClick={addAsync}>
+        {loading ? "Loading..." : "IncrementAsync"}
+      </Button>
       <Text>Count: {count}</Text>
     </Group>
   )

@@ -1,6 +1,5 @@
-import { useDispatch } from "@/stores"
 import { authSelector } from "@/stores/selectors"
-import { Fragment, ReactNode, useEffect } from "react"
+import { Fragment, ReactNode } from "react"
 import { useSelector } from "react-redux"
 import { Navigate, useLocation } from "react-router-dom"
 

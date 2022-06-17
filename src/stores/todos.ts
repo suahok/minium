@@ -18,7 +18,7 @@ export const fetchTodos = createAsyncThunk("FetchTodos", async () => {
     if (res.ok) {
       return await res.json()
     }
-    console.log(res.statusText)
+    console.error(res.statusText)
   } catch (error) {
     console.error(error)
   }
@@ -32,14 +32,10 @@ const todosSlice = createSlice({
     builder
       .addCase(fetchTodos.pending, (state, action) => {
         state.loading = true
-        console.log("Loading...")
-        console.log(action)
       })
       .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
         state.value = action.payload
         state.loading = false
-        console.log("Done!")
-        console.log(action)
       })
   }
 })
