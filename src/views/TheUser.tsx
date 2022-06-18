@@ -15,7 +15,9 @@ export default function TheUser({ name }: Props) {
 
   return (
     <Group direction="column">
-      <Text>{username}</Text>
+      <Text color="gray" weight="bold">
+        {username}
+      </Text>
 
       <Group>
         <Button color="cyan" onClick={() => void goToUser("Leanne Graham")}>
