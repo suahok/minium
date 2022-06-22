@@ -8,7 +8,7 @@ export const incrementAsyncCount = createAsyncThunk("IncrementAsyncCount", async
   return await new Promise<number>((resolve, reject) => {
     setTimeout(() => {
       return resolve(1)
-    }, 2000)
+    }, 700)
   })
 })
 
@@ -25,8 +25,8 @@ const counterSlice = createSlice({
       .addCase(incrementAsyncCount.pending, (state, action) => {
         state.loading = true
       })
-      .addCase(incrementAsyncCount.fulfilled, (state, action) => {
-        state.value += action.payload
+      .addCase(incrementAsyncCount.fulfilled, (state, { payload }) => {
+        state.value += payload
         state.loading = false
       })
   }
