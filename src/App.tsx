@@ -3,6 +3,11 @@ import { Box, ChakraProvider, Link } from "@chakra-ui/react"
 import { Suspense } from "react"
 import { Link as ReactLink, useNavigate } from "react-router-dom"
 import { GetRoutes } from "./router"
+import { createPortal } from "react-dom"
+
+function PortalLader() {
+  return createPortal(<Loader />, document.getElementById("portal-loader") as HTMLElement)
+}
 
 export default function App() {
   const navigtor = useNavigate()
@@ -27,9 +32,12 @@ export default function App() {
             <Link as={ReactLink} color="cyan.600" to="/main">
               Mian
             </Link>
+            <Link as={ReactLink} color="cyan.600" to="/outlook">
+              Outlook
+            </Link>
           </Group>
           <Box mt={5}>
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<PortalLader />}>
               <GetRoutes />
             </Suspense>
           </Box>

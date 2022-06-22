@@ -11,6 +11,7 @@ const MainBooks = lazy(() => import("@/views/MainBooks"))
 const MainUsersIndex = lazy(() => import("@/views/MainUsersIndex"))
 const TheUser = lazy(() => import("@/views/TheUser"))
 const TheBook = lazy(() => import("@/views/TheBook"))
+const Outlook = lazy(() => import("@/views/Outlook"))
 const NotFound = lazy(() => import("@/views/NotFound"))
 
 export function GetRoutes() {
@@ -46,6 +47,7 @@ export function GetRoutes() {
         }
       ]
     },
+    { path: "/outlook", element: <Outlook /> },
     { path: "*", element: <NotFound /> }
   ])
 }
