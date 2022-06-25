@@ -1,14 +1,25 @@
-import { Group, List, Title } from "@mantine/core"
-import { Suspense } from "react"
+import { Group, List, Skeleton, Title } from "@mantine/core"
+import { createElement, Suspense } from "react"
 
 const resource = fetchProfileData()
 
 export default function Outlook() {
   return (
-    <Suspense fallback={<Title order={2}>Loading profile...</Title>}>
+    <Suspense fallback={<Skeleton width={240} height={34} />}>
       <Group direction="column" spacing="sm">
         <ProfileUser />
-        <Suspense fallback={<Title order={3}>Loading todos...</Title>}>
+        <Suspense
+          fallback={
+            <>
+              <Skeleton width={440} height={14} mt={10} />
+              <Skeleton width={440} height={14} />
+              <Skeleton width={440} height={14} />
+              <Skeleton width={440} height={14} />
+              <Skeleton width={440} height={14} />
+              <Skeleton width={440} height={14} />
+            </>
+          }
+        >
           <ProfileTodos />
         </Suspense>
       </Group>
@@ -24,7 +35,7 @@ function ProfileUser() {
 function ProfileTodos() {
   const todos = resource.todos.read()
   return (
-    <List withPadding>
+    <List>
       {todos.map((todo: { id: number; title: string }) => (
         <List.Item key={todo.id}>{todo.title}</List.Item>
       ))}
