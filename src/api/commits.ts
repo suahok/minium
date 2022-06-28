@@ -1,5 +1,5 @@
 export function fetchCommits() {
-  return new Promise<any>((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     fetch("https://api.github.com/repos/suahok/minium/commits")
       .then(res => {
         if (res.ok) {
