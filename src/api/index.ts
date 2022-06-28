@@ -1,7 +1,7 @@
 import { wrapPromise } from "./helper"
 import { fetchCommits } from "./commits"
 
-export function fetchApiData() {
+export function fetchApiResource() {
   const commitsPromise = fetchCommits()
 
   return {

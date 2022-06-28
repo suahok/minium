@@ -1,7 +1,7 @@
 import { Button, Container, MantineProvider } from "@mantine/core"
-import { fetchApiData } from "./api"
+import { fetchApiResource } from "./api"
 
-const resource = fetchApiData()
+const resource = fetchApiResource()
 
 export default function App() {
   const data = resource.commits.read()
