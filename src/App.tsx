@@ -1,31 +1,87 @@
-import { Box, Button, Container, Group, MantineProvider, Transition } from "@mantine/core"
-import { useState } from "react"
-import { FaHeart } from "react-icons/fa"
+import { Center, Container, MantineProvider } from "@mantine/core"
+import React, { useState } from "react"
+import styled from "styled-components"
+import design_light from "./assets/design_light.png"
+import design_dart from "./assets/design_dart.png"
 
 export default function App() {
-  const [opened, updateOnpened] = useState(false)
+  const [maskWidth, updateWaskWidth] = useState("")
+
+  const handleMouseMove = (event: React.MouseEvent) => {
+    const wrapWidth = document.body.clientWidth
+    const target = event.currentTarget
+    const clientWidth = target.clientWidth
+    const margin = (wrapWidth - clientWidth) / 2
+    const width = event.clientX - margin
+    updateWaskWidth(target.clientWidth - width + "px")
+  }
+
+  const handleMouseLeave = () => {
+    updateWaskWidth("80%")
+  }
 
   return (
     <MantineProvider>
-      <Container py={16}>
-        <Group direction="column">
-          <Button variant="light" color="cyan" onClick={() => updateOnpened(!opened)}>
-            Opened
-          </Button>
-          <Transition
-            mounted={opened}
-            transition="rotate-right"
-            duration={300}
-            timingFunction="cubic-bezier(.68,-0.41,.54,1.36)"
+      <Container
+        size="xl"
+        px="0"
+        py="xl"
+        style={{ backgroundColor: "lightsteelblue" }}
+      >
+        <Center>
+          <DragWrap
+            onMouseOver={handleMouseMove}
+            onMouseMove={handleMouseMove}
+            onMouseOut={handleMouseLeave}
           >
-            {styles => (
-              <Box style={styles}>
-                <FaHeart size={120} />
-              </Box>
-            )}
-          </Transition>
-        </Group>
+            <div className="guide-light">
+              <img src={design_light} />
+            </div>
+            <div
+              className="mask-dart"
+              style={{
+                width: maskWidth,
+                transition: maskWidth === "80%" ? "width ease 0.15s" : "none"
+              }}
+            >
+              <div className="guide-dark">
+                <img src={design_dart} />
+              </div>
+            </div>
+          </DragWrap>
+        </Center>
       </Container>
     </MantineProvider>
   )
 }
+
+const DragWrap = styled.div`
+  cursor: pointer;
+  position: relative;
+  width: 800px;
+  height: 520px;
+  background-color: whitesmoke;
+  overflow: hidden;
+
+  .guide-light,
+  .guide-dark {
+    position: absolute;
+    right: 0;
+    width: 800px;
+    height: 100%;
+    pointer-events: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .mask-dart {
+    position: absolute;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+  }
+`
