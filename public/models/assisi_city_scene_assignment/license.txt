@@ -1,0 +1,11 @@
+Model Information:
+* title:	Assisi - City Scene Assignment
+* source:	https://sketchfab.com/3d-models/assisi-city-scene-assignment-8b3dc82bc269464e8a9632b8094d538d
+* author:	Nioma van der Steen (https://sketchfab.com/fromthestone)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Assisi - City Scene Assignment" (https://sketchfab.com/3d-models/assisi-city-scene-assignment-8b3dc82bc269464e8a9632b8094d538d) by Nioma van der Steen (https://sketchfab.com/fromthestone) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
