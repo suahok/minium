@@ -1,5 +1,5 @@
-import { post } from '../axios'
+import { request } from '@/service/axios'
 
 export function refreshToken(data: object) {
-  return post('/refreshToken', data)
+  return request({ method: 'post', url: '/refreshToken', data })
 }

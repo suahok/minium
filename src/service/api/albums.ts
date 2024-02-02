@@ -1,5 +1,5 @@
-import { get } from '../axios'
+import { request } from '../axios'
 
 export function getListOfAlbum() {
-  return get('/users')
+  return request({ url: '/users' })
 }
