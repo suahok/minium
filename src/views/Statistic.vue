@@ -1,79 +1,54 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { ref } from 'vue'
-
-const show = ref(false)
-
-const handleClick = () => {
-  show.value = !show.value
+function toggleTheme() {
+  const docEl = document.documentElement
+  docEl.classList.toggle('dark')
 }
 </script>
 
 <template>
-  <div class="example w-100 h-50 box-border bg-gradient-to-r from-[#FF9078] to-[#FA3440]"></div>
-  <div class="w-100 bg-white px-xs mt-xs rounded">
-    <div class="min-h-10 overflow-hidden">
-      <h4>使用 CSS Transition 通过改变 Height 来展开收起元素</h4>
-    </div>
-    <Transition name="slide">
-      <div v-if="show" class="lorem-ipsum">
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo perspiciatis tempora iure accusamus rerum. Fuga
-          porro unde, laboriosam soluta accusantium numquam quos adipisci commodi velit, expedita officia cum excepturi
-          molestias.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab doloribus optio, eaque harum blanditiis totam
-          voluptatibus amet quibusdam veritatis animi ipsum eveniet modi aspernatur, vel repellat est commodi
-          consequatur unde! A obcaecati soluta inventore, numquam impedit quaerat magnam incidunt sit cupiditate sequi
-          cum. Exercitationem commodi reiciendis culpa iste optio aliquam incidunt at, ab consectetur quae est sapiente
-          dignissimos, sit deleniti voluptatibus animi repudiandae. Itaque nemo laborum dolore numquam repudiandae
-          mollitia quis. Placeat quis architecto eligendi distinctio quas perferendis officia voluptatem illo, nisi
-          ullam voluptatum odio eveniet non eum vero vel dolorum deleniti adipisci culpa. Reprehenderit cum ut
-          voluptates reiciendis iusto.
-        </p>
-      </div>
-    </Transition>
-    <div class="h-10 border-t border-t-solid border-t-gray-200 cursor-pointer">
-      <div class="h-full flex justify-center items-center" @click="handleClick">
-        <Icon :icon="`iconamoon:arrow-${show ? 'up' : 'down'}-2-fill`" width="30" />
-      </div>
-    </div>
+  <div class="bg-white font-[roboto] h-screen p-sm transition box-border overflow-hidden dark:bg-slate-900">
+    <button
+      class="border-none rounded cursor-pointer my-sm outline-none bg-slate-300 py-2 px-4 transition text-slate-800 uppercase dark:bg-slate-700 dark:text-slate-200"
+      @click="toggleTheme"
+    >
+      toggle
+    </button>
+    <table
+      class="bg-white border border-separate border-solid border-spacing-2 border-slate-400 text-left w-full transition table-auto dark:bg-slate-800 dark:border-slate-500"
+    >
+      <caption class="p-4 transition text-slate-400 caption-bottom dark:text-slate-500">
+        Table 3.1: Professional wrestlers and their signature moves.
+      </caption>
+      <thead class="bg-slate-100 transition text-slate-800 dark:bg-slate-700 dark:text-slate-200">
+        <tr>
+          <th class="border border-solid border-slate-300 p-4 transition dark:border-slate-600">Song</th>
+          <th class="border border-solid border-slate-300 p-4 transition dark:border-slate-600">Artist</th>
+          <th class="border border-solid border-slate-300 p-4 transition dark:border-slate-600">Year</th>
+        </tr>
+      </thead>
+      <tbody class="transition text-slate-500 dark:text-slate-400">
+        <tr>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">
+            The Sliding Mr. Bones (Next Stop, Pottersville)
+          </td>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">Malcolm Lockyer</td>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">1961</td>
+        </tr>
+        <tr>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">Witchy Woman</td>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">The Eagles</td>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">1972</td>
+        </tr>
+        <tr>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">Shining Star</td>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">
+            Earth, Wind, and Fire
+          </td>
+          <td class="border border-solid border-slate-300 p-4 transition dark:border-slate-700">1975</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
-<style scoped>
-.example {
-  clip-path: path('M0 0 H400 V70 A30 30, 0, 1 0, 400 130 V200 H0 V130 A30 30, 1,  1 0, 0 70 Z');
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  overflow: hidden;
-  transform: translate3d(0);
-  transition: 0.3s;
-}
-
-.slide-enter-active,
-.slide-leave-from {
-  max-height: 500px;
-}
-
-.slide-leave-active,
-.slide-enter-from {
-  max-height: 0;
-}
-
-.lorem-ipsum p {
-  font-family: 'Roboto Medium';
-  font-variant: small-caps;
-  /* text-align-last: center; */
-  /* word-break: break-all; */
-  /* word-spacing: 2px; */
-  /* -webkit-text-security: square; */
-  line-height: 1.6;
-  text-indent: 1em;
-
-  color: #666;
-}
-</style>
+<style scoped></style>

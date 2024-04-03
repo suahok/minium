@@ -42,68 +42,66 @@ export default [
   {
     url: '/api/menus',
     method: 'get',
-    response: () => {
-      return {
-        code: 0,
-        message: 'ok',
-        data: [
-          {
-            id: '@guid',
-            type: 'view',
-            path: 'dashboard',
-            name: 'Dashboard',
-            component: 'Dashboard',
-            label: 'Dashboard',
-            icon: 'oi:dashboard'
-          },
-          {
-            id: '@guid',
-            type: 'view',
-            path: 'statistic',
-            name: 'Statistic',
-            component: 'Statistic',
-            label: 'Statistic',
-            icon: 'iconoir:svg-format'
-          },
-          {
-            id: '@guid',
-            type: 'view',
-            path: 'illuminant',
-            name: 'Illuminant',
-            component: 'Illuminant',
-            label: 'Illuminant',
-            icon: 'mdi:form-outline'
-          },
-          {
-            id: '@guid',
-            type: 'view',
-            path: 'audiovisual',
-            name: 'Audiovisual',
-            component: 'Audiovisual',
-            label: 'Audiovisual',
-            icon: 'iconoir:3d-select-solid'
-          },
-          {
-            id: '@guid',
-            type: 'link',
-            path: 'https://cn.vitejs.dev',
-            name: 'Vite',
-            component: 'Vite',
-            label: Random.name(),
-            icon: 'vscode-icons:file-type-vite'
-          },
-          {
-            id: '@guid',
-            type: 'link',
-            path: 'https://react.dev',
-            name: 'React',
-            component: 'React',
-            label: Random.name(),
-            icon: 'logos:react'
-          }
-        ]
-      }
-    }
+    response: () => ({
+      code: 0,
+      message: 'ok',
+      data: [
+        {
+          id: '@guid',
+          type: 'view',
+          path: 'dashboard',
+          name: 'Dashboard',
+          component: 'Dashboard',
+          label: 'Dashboard',
+          icon: 'oi:dashboard'
+        },
+        {
+          id: '@guid',
+          type: 'view',
+          path: 'statistic',
+          name: 'Statistic',
+          component: 'Statistic',
+          label: 'Statistic',
+          icon: 'iconoir:svg-format'
+        },
+        {
+          id: '@guid',
+          type: 'view',
+          path: 'illuminant',
+          name: 'Illuminant',
+          component: 'Illuminant',
+          label: 'Illuminant',
+          icon: 'mdi:form-outline'
+        },
+        {
+          id: '@guid',
+          type: 'view',
+          path: 'audiovisual',
+          name: 'Audiovisual',
+          component: 'Audiovisual',
+          label: 'Audiovisual',
+          icon: 'iconoir:3d-select-solid'
+        },
+        {
+          id: '@guid',
+          type: 'link',
+          path: 'https://cn.vitejs.dev',
+          name: 'Vite',
+          component: 'Vite',
+          label: Random.name(),
+          icon: 'vscode-icons:file-type-vite'
+        },
+        {
+          id: '@guid',
+          type: 'link',
+          path: 'https://react.dev',
+          name: 'React',
+          component: 'React',
+          label: Random.name(),
+          icon: 'logos:react'
+        }
+      ]
+    })
   },
   {
     url: '/api/pages',

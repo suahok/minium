@@ -1,7 +1,7 @@
 import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import unocss from 'unocss/vite'
-import { defineConfig, splitVendorChunkPlugin, loadEnv, BuildOptions, ServerOptions } from 'vite'
+import { defineConfig, splitVendorChunkPlugin, loadEnv, BuildOptions, ServerOptions, ExperimentalOptions } from 'vite'
 import { viteExternalsPlugin } from 'vite-plugin-externals'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { insertHtml, h } from 'vite-plugin-insert-html'
@@ -24,7 +24,7 @@ export default defineConfig(({ command, mode }) => {
     viteExternalsPlugin({ cesium: 'Cesium' }),
     insertHtml({ head: [h('script', { src: CESIUM_SCRIPT_SRC })] }),
     viteMockServe({
-      mockPath: './mock',
+      mockPath: './src/mock',
       prodEnabled: IS_PROD_ENABLED,
       logger: true,
       injectCode: `
