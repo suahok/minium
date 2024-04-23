@@ -4,7 +4,7 @@ import Helloworld from '@/components/Helloworld.vue'
 
 const map = reactive(new Map([['count', ref(0)]]))
 const set = reactive<Set<number>>(new Set([1, 2, 3]))
-const src = 'https://picsum.photos/1920/1080?random=100'
+const src = 'https://picsum.photos/1920/1080?random=10'
 
 function handleClick() {
   const count = map.get('count')!
@@ -18,7 +18,7 @@ function handleClick() {
   <p>Dashboard Page</p>
   <button v-on="{ click: handleClick }">press me</button>
   <h5 v-text="map.get('count')" />
-  <Helloworld />
+  <Helloworld v-bind="{ name: 'Tom' }" />
   <ul>
     <li v-for="(it, idx) in set" :key="idx">{{ it }}</li>
   </ul>
