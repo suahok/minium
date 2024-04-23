@@ -6,17 +6,4 @@
   </router-view>
 </template>
 
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-}
-
-div#app {
-  overflow: hidden;
-  position: relative;
-
-  width: auto;
-  height: 100vh;
-}
-</style>
+<style lang="scss"></style>
