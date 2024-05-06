@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  nginx:
+    privileged: true
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./dist:/usr/share/nginx/html/
+      - ./nginx.conf:/etc/nginx/nginx.conf

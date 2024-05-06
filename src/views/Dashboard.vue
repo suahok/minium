@@ -1,28 +1,81 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import Helloworld from '@/components/Helloworld.vue'
+import { defineAsyncComponent, reactive, ref } from 'vue'
 
-const map = reactive(new Map([['count', ref(0)]]))
-const set = reactive<Set<number>>(new Set([1, 2, 3]))
-const src = 'https://picsum.photos/1920/1080?random=10'
+const GsapBox = defineAsyncComponent(() => import('@/components/GsapBox.vue'))
+const Helloworld = defineAsyncComponent(() => import('@/components/Helloworld.vue'))
+const TransitionButton = defineAsyncComponent(() => import('@/components/TransitionButton.vue'))
+
+const set = reactive(new Set([{ id: crypto.randomUUID(), value: getRandomInt() }]))
+const map = reactive(new Map([['count', ref(1)]]))
+const transitionKey = ref(Date.now())
 
 function handleClick() {
   const count = map.get('count')!
   count.value += 1
   map.set('count', count)
-  set.add(set.size + 1)
+  transitionKey.value = Date.now()
+
+  const item = { id: crypto.randomUUID(), value: getRandomInt() }
+  set.add(item)
+}
+
+function getRandomInt() {
+  return Math.round(Math.random() * 100)
 }
 </script>
 
 <template>
   <p>Dashboard Page</p>
-  <button v-on="{ click: handleClick }">press me</button>
-  <h5 v-text="map.get('count')" />
-  <Helloworld v-bind="{ name: 'Tom' }" />
-  <ul>
-    <li v-for="(it, idx) in set" :key="idx">{{ it }}</li>
-  </ul>
-  <img :src class="h-full w-full block" />
+  <button @click="handleClick">press me</button>
+  <div class="h-10 relative">
+    <Transition name="fade">
+      <h3 :key="transitionKey" class="absolute">{{ map.get('count') }}</h3>
+    </Transition>
+  </div>
+  <TransitionGroup name="list" tag="ul" class="flex list-none p-0 gap-x-2">
+    <li v-for="item in set" :key="item.id">{{ item.value }}</li>
+  </TransitionGroup>
+  <Helloworld name="John Pete" />
+  <GsapBox />
+  <TransitionButton />
 </template>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-from {
+  transform: translateY(20px) scale(0.8);
+}
+
+.fade-leave-to {
+  transform: translateY(-20px) scale(0.8);
+}
+
+ul li {
+  will-change: transform;
+}
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px) scale(1.5);
+}
+
+.list-leave-active {
+  position: absolute;
+}
+</style>
